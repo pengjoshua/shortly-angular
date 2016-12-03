@@ -8,12 +8,12 @@
       
   </div>
 
-  <input type="search" class="navigation" placeholder="Search Links" ng-model="search" />
-  <div class='link' ng-repeat="link in data.links | orderBy:'-visits' | filter:search">
+  <input type="search" class="navigation" placeholder="filter links" ng-model="search" />
+  <div class='link fx-fade-up-big fx-easing-bounce' ng-repeat="link in data.links | orderBy:'-visits' | filter:search">
     <img src='assets/redirect_icon.png'/>
     <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
     <div class='title'>{{link.title}}</div>
     <div class='original'>{{link.url}}</div>
-    <a href='{{link.base_url}}/{{link.code}}'>{{link.base_url}}/{{link.code}}</a>
+    <a href='{{link.base_url}}/{{link.code}}'>{{link.url}}/{{link.code}}</a>
   </div>
 </div>

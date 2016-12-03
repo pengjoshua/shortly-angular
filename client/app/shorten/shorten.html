@@ -9,9 +9,9 @@
   </div>
 
   <form name="addLinkForm" ng-submit='addLink()'>
-    <input type='url' name="url" ng-model="link.url" required>
-    <button>Shorten</button>
-    <div style="color: red" ng-show="addLinkForm.url.$error.required">Enter URL here!</div>
-    <div style="color: red" ng-show="addLinkForm.url.$error.url">Not a valid URL!</div>
+    <input type='url' name="url" ng-pattern='rValidUrl' ng-model="link.url" required>
+    <button>Add</button>
+    <div style="color: red" ng-show="addLinkForm.url.$error.required">Enter your url here</div>
+    <div style="color: red" ng-show="addLinkForm.url.$error.url">Not a valid url</div>
   </form>
 </div>
