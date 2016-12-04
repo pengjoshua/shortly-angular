@@ -9,9 +9,10 @@
   </div>
 
   <form name="addLinkForm" ng-submit='addLink()'>
-    <input type='url' name="url" ng-model="link.url" required>
-    <button>Add</button>
-    <div style="color: red" ng-show="addLinkForm.url.$error.required">Enter your url here</div>
-    <div style="color: red" ng-show="addLinkForm.url.$error.url">Not a valid url</div>
+    <input type='url' name="url" ng-model="link.url" required
+      ng-class='{"error": addLinkForm.$invalid && addLinkForm.$dirty}'>
+    <button ng-disabled='addLinkForm.$invalid'>Add</button>
+    <div style="color: red" ng-show="addLinkForm.url.$error.required && addLinkForm.$dirty">Enter your url here</div>
+    <div style="color: red" ng-show="addLinkForm.url.$error.url && addLinkForm.$dirty">Not a valid url</div>
   </form>
 </div>

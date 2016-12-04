@@ -4,10 +4,13 @@ angular.module('shortly', [
   'shortly.shorten',
   'shortly.auth',
   'ngRoute',
+  'ui.router',
   'ngFx',
   'ngAnimate'
 ])
-.config(function ($routeProvider, $httpProvider) {
+.config(function ($routeProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
+  // include $stateProvider, $urlRouterProvider
+
   $routeProvider
     .when('/', {
       templateUrl: 'app/auth/signin.html',
@@ -38,7 +41,40 @@ angular.module('shortly', [
     .otherwise({ 
       redirectTo: '/links' 
     });
-    // Your code here
+
+  // // Use ui-router
+
+  // $urlRouterProvider.otherwise('/links');
+  // $stateProvider
+  //   .state('links', {
+  //     templateUrl: 'apps/links/links.html',
+  //     url: '/links',
+  //     controller: 'LinksController'
+  //   })
+  //   .state('links.child', {
+  //     template: '<h1>{{ name }}</h1>',
+  //     url: '/child'
+  //   })
+  //   .state('shorten', {
+  //     templateUrl: 'app/shorten/shorten.html',
+  //     url: '/shorten',
+  //     controller: 'ShortenController'
+  //   })
+  //   .state('/signin', {
+  //     templateUrl: 'app/auth/signin.html',
+  //     url: '/signin',
+  //     controller: 'AuthController'
+  //   })
+  //   .state('/signup', {
+  //     templateUrl: 'app/auth/signup.html',
+  //     url: '/signup',
+  //     controller: 'AuthController'
+  //   })
+  //   .state('/logout', {
+  //     templateUrl: 'app/auth/signin.html',
+  //     url: '/logout',
+  //     controller: 'AuthController'
+  //   });
 
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
@@ -74,4 +110,14 @@ angular.module('shortly', [
       $location.path('/signin');
     }
   });
+})
+.animation('.custom-fade', function() {
+  return {
+    leave: function(element, done) {
+      TweenMax.to(element, 1, {opacity: 0, onComplete: done});
+    }, 
+    enter: function(element, done) {
+      TweenMax.to(element, 1, {opacity: 1, onComplete: done});
+    }
+  };
 });
